@@ -1,205 +1,161 @@
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PS5 Hub — Redesign Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
-
 *{box-sizing:border-box;margin:0;padding:0}
+body{background:#09090b;display:flex;justify-content:center;align-items:flex-start;min-height:100vh;padding:32px 16px;font-family:'Inter',sans-serif}
 
 :root{
-  --bg:#09090b;
-  --bg2:#111113;
-  --bg3:#18181b;
-  --bg4:#1f1f23;
-  --border:#2a2a2f;
-  --border2:#3a3a42;
-  --text:#fafafa;
-  --muted:#71717a;
-  --muted2:#52525b;
-  --accent:#a78bfa;
-  --accent2:#7c3aed;
-  --cyan:#22d3ee;
-  --green:#4ade80;
-  --pink:#f472b6;
-  --yellow:#facc15;
+  --bg:#09090b;--bg2:#111113;--bg3:#18181b;--bg4:#1f1f23;
+  --border:#2a2a2f;--border2:#3a3a42;
+  --text:#fafafa;--muted:#71717a;--muted2:#52525b;
+  --accent:#a78bfa;--accent2:#7c3aed;
+  --cyan:#22d3ee;--green:#4ade80;--pink:#f472b6;--yellow:#facc15;
 }
 
-.shell{
-  background:var(--bg);
-  min-height:820px;
-  font-family:'Inter',sans-serif;
-  color:var(--text);
+.phone-frame{
+  width:390px;border-radius:44px;overflow:hidden;
+  box-shadow:0 0 0 1px #2a2a2f,0 32px 80px rgba(0,0,0,0.7),0 0 60px rgba(124,58,237,0.08);
   position:relative;
-  overflow:hidden;
 }
 
-canvas#particles{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  z-index:0;
-}
+.shell{background:var(--bg);min-height:844px;color:var(--text);position:relative;overflow:hidden}
 
+canvas#particles{position:absolute;inset:0;pointer-events:none;z-index:0}
 .content{position:relative;z-index:1}
 
-/* ── TOP NAV ── */
+/* status bar */
+.status-bar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 24px 8px;font-size:12px;font-weight:600;
+}
+
+/* nav */
 .nav{
   display:flex;align-items:center;justify-content:space-between;
-  padding:16px 20px;
-  border-bottom:1px solid var(--border);
-  backdrop-filter:blur(12px);
-  background:rgba(9,9,11,0.8);
+  padding:10px 20px 12px;border-bottom:1px solid var(--border);
+  background:rgba(9,9,11,0.85);backdrop-filter:blur(12px);
 }
 .nav-left{display:flex;align-items:center;gap:10px}
 .logo{
   width:32px;height:32px;border-radius:8px;
   background:linear-gradient(135deg,var(--accent2),var(--accent));
   display:flex;align-items:center;justify-content:center;
-  font-size:14px;font-weight:800;color:#fff;letter-spacing:-0.5px;
+  font-size:13px;font-weight:800;color:#fff;letter-spacing:-0.5px;
 }
-.app-title{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;letter-spacing:-0.3px}
+.app-title{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;letter-spacing:-0.3px;color:var(--text)}
 .app-title span{color:var(--accent)}
 .nav-right{display:flex;align-items:center;gap:8px}
 .nav-btn{
-  padding:6px 14px;border-radius:7px;font-size:12px;font-weight:600;
-  border:1px solid var(--border2);background:var(--bg3);color:var(--muted);
-  cursor:pointer;transition:all .2s;letter-spacing:0.2px;
+  padding:5px 12px;border-radius:7px;font-size:11px;font-weight:600;
+  border:1px solid var(--border2);background:var(--bg3);color:var(--muted);cursor:pointer;
 }
-.nav-btn.primary{
-  background:var(--accent2);border-color:var(--accent);color:#fff;
-}
+.nav-btn.primary{background:var(--accent2);border-color:var(--accent);color:#fff}
 .live-dot{
-  display:flex;align-items:center;gap:5px;
-  padding:5px 10px;border-radius:20px;
+  display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;
   background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);
 }
-.dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
 
-/* ── HERO SECTION ── */
-.hero{
-  padding:32px 20px 24px;
-  display:flex;flex-direction:column;gap:8px;
-}
+/* hero */
+.hero{padding:24px 20px 16px;display:flex;flex-direction:column;gap:8px}
 .hero-label{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:4px 10px;border-radius:20px;
+  display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:20px;
   background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25);
-  font-size:11px;font-weight:600;color:var(--accent);letter-spacing:1px;
-  width:fit-content;
+  font-size:10px;font-weight:600;color:var(--accent);letter-spacing:1px;width:fit-content;
 }
 .hero-title{
-  font-family:'Space Grotesk',sans-serif;
-  font-size:28px;font-weight:700;letter-spacing:-0.8px;line-height:1.2;
+  font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;
+  letter-spacing:-0.8px;line-height:1.15;color:var(--text);
 }
 .hero-title em{font-style:normal;color:var(--accent)}
-.hero-sub{font-size:13px;color:var(--muted);line-height:1.5;max-width:320px}
+.hero-sub{font-size:13px;color:var(--muted);line-height:1.5;max-width:280px}
 
-/* ── GAME CARDS — horizontal scroll ── */
+/* section */
 .section-header{
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 20px;margin-bottom:12px;
+  padding:0 20px;margin-bottom:10px;
 }
-.section-title{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}
+.section-title{font-size:10px;font-weight:600;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}
 .section-action{font-size:11px;color:var(--accent);font-weight:500;cursor:pointer}
 
-.games-scroll{
-  display:flex;gap:12px;padding:0 20px;
-  overflow-x:auto;padding-bottom:4px;
-}
+/* games */
+.games-scroll{display:flex;gap:10px;padding:0 20px;overflow-x:auto;padding-bottom:2px}
 .games-scroll::-webkit-scrollbar{display:none}
-
 .game-card{
-  flex-shrink:0;width:140px;border-radius:14px;overflow:hidden;
-  cursor:pointer;border:1px solid var(--border);
-  transition:transform .25s cubic-bezier(.34,1.56,.64,1),border-color .2s;
-  position:relative;
+  flex-shrink:0;width:130px;border-radius:14px;overflow:hidden;cursor:pointer;
+  border:1px solid var(--border);transition:transform .25s cubic-bezier(.34,1.56,.64,1),border-color .2s;
 }
-.game-card:hover{transform:translateY(-4px) scale(1.02);border-color:var(--border2)}
+.game-card:hover{transform:translateY(-3px) scale(1.02);border-color:var(--border2)}
 .game-card.active{border-color:var(--accent)}
-
-.game-cover{
-  height:88px;display:flex;align-items:center;justify-content:center;
-  font-size:32px;position:relative;
-}
-.game-cover::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,0.6));
-}
+.game-cover{height:80px;display:flex;align-items:center;justify-content:center;font-size:28px;position:relative}
+.game-cover::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,0.55))}
 .gc1{background:linear-gradient(135deg,#3d0000,#7a1500)}
 .gc2{background:linear-gradient(135deg,#000033,#4a0020)}
 .gc3{background:linear-gradient(135deg,#001a0a,#004020)}
 .gc4{background:linear-gradient(135deg,#1a0030,#4a1060)}
 .gc5{background:linear-gradient(135deg,#0a0a0a,#1a1a1a)}
 .gc6{background:linear-gradient(135deg,#000d22,#00285a)}
-
-.game-info{padding:10px;background:var(--bg3)}
-.game-name{font-size:11px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.game-info{padding:9px 10px;background:var(--bg3)}
+.game-name{font-size:11px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
 .game-count{font-size:10px;color:var(--accent);margin-top:2px;font-weight:500}
 .active-bar{height:2px;background:linear-gradient(90deg,var(--accent2),var(--accent));display:none}
 .game-card.active .active-bar{display:block}
 
-/* ── FEED CARDS ── */
-.feed{padding:0 20px;display:flex;flex-direction:column;gap:10px;margin-top:20px}
-
-.feed-card{
-  border-radius:14px;background:var(--bg3);
-  border:1px solid var(--border);overflow:hidden;cursor:pointer;
-  transition:border-color .2s, transform .2s cubic-bezier(.34,1.56,.64,1);
+/* community strip */
+.community-strip{
+  display:flex;align-items:center;gap:10px;margin:16px 20px 0;padding:11px 16px;
+  border-radius:12px;background:var(--bg3);border:1px solid var(--border);cursor:pointer;
 }
+.strip-dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+
+/* feed */
+.feed{padding:16px 20px 0;display:flex;flex-direction:column;gap:10px}
+.feed-card{border-radius:14px;background:var(--bg3);border:1px solid var(--border);overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s}
 .feed-card:hover{border-color:var(--border2);transform:translateY(-1px)}
-
 .card-accent{height:3px}
-.ca-guide{background:linear-gradient(90deg,#f59e0b,#fbbf24)}
-.ca-map{background:linear-gradient(90deg,#06b6d4,#22d3ee)}
-.ca-build{background:linear-gradient(90deg,#ec4899,#f472b6)}
-.ca-trophy{background:linear-gradient(90deg,#eab308,#facc15)}
-
-.card-body{padding:14px}
+.ca-build{background:linear-gradient(90deg,#ec4899,rgba(244,114,182,0.3))}
+.ca-map{background:linear-gradient(90deg,#06b6d4,rgba(34,211,238,0.3))}
+.ca-trophy{background:linear-gradient(90deg,#eab308,rgba(250,204,21,0.3))}
+.card-body{padding:13px}
 .card-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.author-avatar{
-  width:30px;height:30px;border-radius:8px;background:var(--bg4);
-  display:flex;align-items:center;justify-content:center;font-size:14px;
-  flex-shrink:0;
-}
+.author-avatar{width:28px;height:28px;border-radius:8px;background:var(--bg4);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
 .author-info{flex:1;min-width:0}
-.author-name{font-size:12px;font-weight:600}
+.author-name{font-size:12px;font-weight:600;color:var(--text)}
 .author-time{font-size:10px;color:var(--muted);margin-top:1px}
-.type-badge{
-  padding:3px 8px;border-radius:20px;font-size:10px;font-weight:600;
-  letter-spacing:0.3px;
-}
-.tb-guide{background:rgba(245,158,11,0.12);color:#f59e0b}
-.tb-map{background:rgba(6,182,212,0.12);color:#06b6d4}
+.type-badge{padding:3px 8px;border-radius:20px;font-size:10px;font-weight:600}
 .tb-build{background:rgba(236,72,153,0.12);color:#ec4899}
+.tb-map{background:rgba(6,182,212,0.12);color:#06b6d4}
 .tb-trophy{background:rgba(234,179,8,0.12);color:#eab308}
-
-.card-title{font-size:15px;font-weight:600;letter-spacing:-0.3px;margin-bottom:4px}
+.card-title{font-size:14px;font-weight:600;letter-spacing:-0.3px;margin-bottom:4px;color:var(--text)}
 .card-desc{font-size:12px;color:var(--muted);line-height:1.5}
-.card-tags{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
-.tag{
-  padding:3px 8px;border-radius:4px;font-size:10px;
-  background:var(--bg4);color:var(--muted);font-weight:500;
-}
+.card-tags{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
+.tag{padding:3px 7px;border-radius:5px;font-size:10px;background:var(--bg4);color:var(--muted);font-weight:500}
 .card-footer{
   display:flex;align-items:center;gap:12px;
-  padding:10px 14px;border-top:1px solid var(--border);
-  background:rgba(0,0,0,0.2);
+  padding:9px 13px;border-top:1px solid var(--border);background:rgba(0,0,0,0.25);
 }
-.stat{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--muted)}
+.stat{display:flex;align-items:center;gap:3px;font-size:11px;color:var(--muted)}
 .open-btn{
-  margin-left:auto;padding:5px 12px;border-radius:7px;font-size:11px;font-weight:600;
-  background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25);color:var(--accent);
+  margin-left:auto;padding:4px 11px;border-radius:7px;font-size:11px;font-weight:600;
+  background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.2);color:var(--accent);
 }
 
-/* ── FAB ── */
+/* fab */
+.fab-container{display:flex;justify-content:flex-end;padding:16px 20px 0}
 .fab{
   width:52px;height:52px;border-radius:15px;
   background:linear-gradient(135deg,var(--accent2),var(--accent));
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;box-shadow:0 8px 24px rgba(124,58,237,0.35);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  box-shadow:0 8px 24px rgba(124,58,237,0.3);
+  font-size:20px;color:#fff;font-weight:700;position:relative;
   transition:transform .25s cubic-bezier(.34,1.56,.64,1);
-  margin:20px auto 0;
-  font-size:20px;font-weight:700;color:#fff;
-  position:relative;
 }
 .fab:hover{transform:scale(1.08) rotate(-5deg)}
 .fab-ring{
@@ -207,219 +163,197 @@ canvas#particles{
   border:1px solid rgba(167,139,250,0.3);
   animation:ring 3s linear infinite;
 }
-@keyframes ring{0%{transform:scale(1);opacity:0.6}50%{transform:scale(1.08);opacity:0.2}100%{transform:scale(1);opacity:0.6}}
+@keyframes ring{0%{transform:scale(1);opacity:0.7}50%{transform:scale(1.1);opacity:0.2}100%{transform:scale(1);opacity:0.7}}
 
-/* ── BOTTOM NAV ── */
+/* bottom nav */
 .bottom-nav{
-  display:flex;margin-top:24px;
-  border-top:1px solid var(--border);padding:10px 0 6px;
-  background:rgba(9,9,11,0.9);backdrop-filter:blur(12px);
+  display:flex;margin-top:20px;padding:10px 0 28px;
+  border-top:1px solid var(--border);
+  background:rgba(9,9,11,0.92);backdrop-filter:blur(12px);
 }
-.bnav-item{
-  flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
-  cursor:pointer;padding:4px 0;
-}
+.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:4px 0}
 .bnav-icon{font-size:16px}
 .bnav-label{font-size:9px;font-weight:600;letter-spacing:0.8px;color:var(--muted);text-transform:uppercase}
 .bnav-item.active .bnav-label{color:var(--accent)}
-.bnav-pip{width:4px;height:4px;border-radius:2px;background:var(--accent);display:none}
+.bnav-pip{width:14px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--accent2),var(--accent));display:none}
 .bnav-item.active .bnav-pip{display:block}
 </style>
+</head>
+<body>
 
-<div class="shell">
-  <canvas id="particles"></canvas>
-  <div class="content">
+<div class="phone-frame">
+  <div class="shell">
+    <canvas id="particles"></canvas>
+    <div class="content">
 
-    <nav class="nav">
-      <div class="nav-left">
-        <div class="logo">P5</div>
-        <div class="app-title">Hub<span>5</span></div>
+      <div class="status-bar">
+        <span style="color:#fafafa">9:41</span>
+        <span style="color:#fafafa;display:flex;gap:6px;align-items:center">
+          <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="3" width="3" height="8" rx="1" fill="white" opacity=".4"/><rect x="4.5" y="2" width="3" height="9" rx="1" fill="white" opacity=".6"/><rect x="9" y="0" width="3" height="11" rx="1" fill="white"/><rect x="13.5" y="1" width="2" height="9" rx="1" fill="white" stroke="white" stroke-width=".5"/></svg>
+          <svg width="16" height="12" viewBox="0 0 16 12" fill="white"><path d="M8 2.4C5.6 2.4 3.4 3.4 1.8 5L0 3.2C2.2 1.2 5 0 8 0s5.8 1.2 8 3.2L14.2 5C12.6 3.4 10.4 2.4 8 2.4z"/><path d="M8 5.6c-1.5 0-2.9.6-3.9 1.6L2.3 5.4C3.7 4 5.8 3.2 8 3.2s4.3.8 5.7 2.2L11.9 7.2C10.9 6.2 9.5 5.6 8 5.6z"/><circle cx="8" cy="10" r="2"/></svg>
+          <span style="font-size:12px;font-weight:700">100%</span>
+        </span>
       </div>
-      <div class="nav-right">
-        <div class="live-dot">
-          <div class="dot"></div>
-          <span style="font-size:10px;font-weight:600;color:#4ade80">247 online</span>
+
+      <nav class="nav">
+        <div class="nav-left">
+          <div class="logo">P5</div>
+          <div class="app-title">Hub<span>5</span></div>
         </div>
-        <div class="nav-btn">Buscar</div>
-        <div class="nav-btn primary">+ Crear</div>
+        <div class="nav-right">
+          <div class="live-dot">
+            <div class="dot"></div>
+            <span style="font-size:10px;font-weight:600;color:#4ade80">247</span>
+          </div>
+          <div class="nav-btn">Buscar</div>
+          <div class="nav-btn primary">+ Crear</div>
+        </div>
+      </nav>
+
+      <div class="hero">
+        <div class="hero-label">✦&nbsp; comunidad activa</div>
+        <div class="hero-title">Apps para<br><em>jugadores reales</em></div>
+        <div class="hero-sub">Crea y descubre herramientas para tus juegos favoritos de PS5.</div>
       </div>
-    </nav>
 
-    <div class="hero">
-      <div class="hero-label">✦ comunidad activa</div>
-      <div class="hero-title">Apps para<br><em>jugadores reales</em></div>
-      <div class="hero-sub">Crea y descubre herramientas para tus juegos favoritos de PS5.</div>
-    </div>
+      <div style="margin-bottom:14px">
+        <div class="section-header">
+          <div class="section-title">Juegos</div>
+          <div class="section-action">Ver todos →</div>
+        </div>
+        <div class="games-scroll" id="games">
+          <div class="game-card active" data-game="0">
+            <div class="game-cover gc1"><span style="position:relative;z-index:1">⚔</span></div>
+            <div class="game-info"><div class="game-name">God of War</div><div class="game-count">9 apps</div></div>
+            <div class="active-bar"></div>
+          </div>
+          <div class="game-card" data-game="1">
+            <div class="game-cover gc2"><span style="position:relative;z-index:1">🕷</span></div>
+            <div class="game-info"><div class="game-name">Spider-Man 2</div><div class="game-count">7 apps</div></div>
+            <div class="active-bar"></div>
+          </div>
+          <div class="game-card" data-game="2">
+            <div class="game-cover gc3"><span style="position:relative;z-index:1">🏹</span></div>
+            <div class="game-info"><div class="game-name">Horizon FW</div><div class="game-count">8 apps</div></div>
+            <div class="active-bar"></div>
+          </div>
+          <div class="game-card" data-game="3">
+            <div class="game-cover gc4"><span style="position:relative;z-index:1">🔥</span></div>
+            <div class="game-info"><div class="game-name">Final Fantasy</div><div class="game-count">5 apps</div></div>
+            <div class="active-bar"></div>
+          </div>
+          <div class="game-card" data-game="4">
+            <div class="game-cover gc5"><span style="position:relative;z-index:1">💀</span></div>
+            <div class="game-info"><div class="game-name">Demon's Souls</div><div class="game-count">6 apps</div></div>
+            <div class="active-bar"></div>
+          </div>
+          <div class="game-card" data-game="5">
+            <div class="game-cover gc6"><span style="position:relative;z-index:1">🔧</span></div>
+            <div class="game-info"><div class="game-name">Ratchet</div><div class="game-count">4 apps</div></div>
+            <div class="active-bar"></div>
+          </div>
+        </div>
+      </div>
 
-    <div style="margin-bottom:16px">
+      <div class="community-strip">
+        <div class="strip-dot"></div>
+        <span style="font-size:11px;font-weight:600;color:#4ade80;flex:1">Comunidad en vivo</span>
+        <span style="font-size:11px;color:#71717a">Ver actividad →</span>
+      </div>
+
+      <div style="height:16px"></div>
       <div class="section-header">
-        <div class="section-title">Juegos</div>
-        <div class="section-action">Ver todos →</div>
+        <div class="section-title">Feed · God of War</div>
+        <div class="section-action">Recientes</div>
       </div>
-      <div class="games-scroll" id="games">
-        <div class="game-card active" data-game="0">
-          <div class="game-cover gc1"><span style="position:relative;z-index:1">⚔</span></div>
-          <div class="game-info">
-            <div class="game-name">God of War</div>
-            <div class="game-count">9 apps</div>
-          </div>
-          <div class="active-bar"></div>
-        </div>
-        <div class="game-card" data-game="1">
-          <div class="game-cover gc2"><span style="position:relative;z-index:1">🕷</span></div>
-          <div class="game-info">
-            <div class="game-name">Spider-Man 2</div>
-            <div class="game-count">7 apps</div>
-          </div>
-          <div class="active-bar"></div>
-        </div>
-        <div class="game-card" data-game="2">
-          <div class="game-cover gc3"><span style="position:relative;z-index:1">🏹</span></div>
-          <div class="game-info">
-            <div class="game-name">Horizon FW</div>
-            <div class="game-count">8 apps</div>
-          </div>
-          <div class="active-bar"></div>
-        </div>
-        <div class="game-card" data-game="3">
-          <div class="game-cover gc4"><span style="position:relative;z-index:1">🔥</span></div>
-          <div class="game-info">
-            <div class="game-name">Final Fantasy</div>
-            <div class="game-count">5 apps</div>
-          </div>
-          <div class="active-bar"></div>
-        </div>
-        <div class="game-card" data-game="4">
-          <div class="game-cover gc5"><span style="position:relative;z-index:1">💀</span></div>
-          <div class="game-info">
-            <div class="game-name">Demon's Souls</div>
-            <div class="game-count">6 apps</div>
-          </div>
-          <div class="active-bar"></div>
-        </div>
-        <div class="game-card" data-game="5">
-          <div class="game-cover gc6"><span style="position:relative;z-index:1">🔧</span></div>
-          <div class="game-info">
-            <div class="game-name">Ratchet</div>
-            <div class="game-count">4 apps</div>
-          </div>
-          <div class="active-bar"></div>
-        </div>
-      </div>
-    </div>
 
-    <div class="section-header">
-      <div class="section-title">Feed · God of War</div>
-      <div class="section-action">Recientes</div>
-    </div>
-
-    <div class="feed">
-      <div class="feed-card">
-        <div class="card-accent ca-build"></div>
-        <div class="card-body">
-          <div class="card-top">
-            <div class="author-avatar">⚡</div>
-            <div class="author-info">
-              <div class="author-name">kratos_fan_es</div>
-              <div class="author-time">hace 12m</div>
+      <div class="feed">
+        <div class="feed-card">
+          <div class="card-accent ca-build"></div>
+          <div class="card-body">
+            <div class="card-top">
+              <div class="author-avatar">⚡</div>
+              <div class="author-info"><div class="author-name">kratos_fan_es</div><div class="author-time">hace 12m</div></div>
+              <div class="type-badge tb-build">Build</div>
             </div>
-            <div class="type-badge tb-build">Build</div>
+            <div class="card-title">Calculadora de daño · Leviatán</div>
+            <div class="card-desc">Calcula el DPS exacto con cada combinación de runas y encantamientos.</div>
+            <div class="card-tags"><div class="tag">#runas</div><div class="tag">#dps</div><div class="tag">#endgame</div></div>
           </div>
-          <div class="card-title">Calculadora de daño · Leviatán</div>
-          <div class="card-desc">Calcula el DPS exacto con cada combinación de runas y encantamientos.</div>
-          <div class="card-tags">
-            <div class="tag">#runas</div><div class="tag">#dps</div><div class="tag">#endgame</div>
+          <div class="card-footer">
+            <div class="stat">♥ 142</div><div class="stat">👁 1.2k</div><div class="stat">💬 18</div>
+            <div class="open-btn">Abrir →</div>
           </div>
         </div>
-        <div class="card-footer">
-          <div class="stat">♥ 142</div>
-          <div class="stat">👁 1.2k</div>
-          <div class="stat">💬 18</div>
-          <div class="open-btn">Abrir →</div>
-        </div>
-      </div>
 
-      <div class="feed-card">
-        <div class="card-accent ca-map"></div>
-        <div class="card-body">
-          <div class="card-top">
-            <div class="author-avatar">🗺</div>
-            <div class="author-info">
-              <div class="author-name">valhalla_guide</div>
-              <div class="author-time">hace 1h</div>
+        <div class="feed-card">
+          <div class="card-accent ca-map"></div>
+          <div class="card-body">
+            <div class="card-top">
+              <div class="author-avatar">🗺</div>
+              <div class="author-info"><div class="author-name">valhalla_guide</div><div class="author-time">hace 1h</div></div>
+              <div class="type-badge tb-map">Mapa</div>
             </div>
-            <div class="type-badge tb-map">Mapa</div>
+            <div class="card-title">Todos los cuervos de Odín</div>
+            <div class="card-desc">Mapa interactivo con los 48 cuervos marcados por reino.</div>
+            <div class="card-tags"><div class="tag">#coleccionables</div><div class="tag">#odín</div></div>
           </div>
-          <div class="card-title">Todos los cuervos de Odín</div>
-          <div class="card-desc">Mapa interactivo con los 48 cuervos marcados por reino. Marca los que ya tienes.</div>
-          <div class="card-tags">
-            <div class="tag">#coleccionables</div><div class="tag">#odín</div>
+          <div class="card-footer">
+            <div class="stat">♥ 89</div><div class="stat">👁 934</div><div class="stat">💬 7</div>
+            <div class="open-btn">Abrir →</div>
           </div>
         </div>
-        <div class="card-footer">
-          <div class="stat">♥ 89</div>
-          <div class="stat">👁 934</div>
-          <div class="stat">💬 7</div>
-          <div class="open-btn">Abrir →</div>
-        </div>
-      </div>
 
-      <div class="feed-card">
-        <div class="card-accent ca-trophy"></div>
-        <div class="card-body">
-          <div class="card-top">
-            <div class="author-avatar">🏆</div>
-            <div class="author-info">
-              <div class="author-name">platinum_hunter</div>
-              <div class="author-time">hace 3h</div>
+        <div class="feed-card">
+          <div class="card-accent ca-trophy"></div>
+          <div class="card-body">
+            <div class="card-top">
+              <div class="author-avatar">🏆</div>
+              <div class="author-info"><div class="author-name">platinum_hunter</div><div class="author-time">hace 3h</div></div>
+              <div class="type-badge tb-trophy">Trofeos</div>
             </div>
-            <div class="type-badge tb-trophy">Trofeos</div>
+            <div class="card-title">Checklist de platino · Ragnarök</div>
+            <div class="card-desc">Rastreador de los 36 trofeos con guía rápida.</div>
+            <div class="card-tags"><div class="tag">#platino</div><div class="tag">#trofeos</div></div>
           </div>
-          <div class="card-title">Checklist de platino · Ragnarök</div>
-          <div class="card-desc">Rastreador de los 36 trofeos con guía rápida para los más difíciles.</div>
-          <div class="card-tags">
-            <div class="tag">#platino</div><div class="tag">#trofeos</div><div class="tag">#100%</div>
+          <div class="card-footer">
+            <div class="stat">♥ 214</div><div class="stat">👁 2.1k</div><div class="stat">💬 31</div>
+            <div class="open-btn">Abrir →</div>
           </div>
         </div>
-        <div class="card-footer">
-          <div class="stat">♥ 214</div>
-          <div class="stat">👁 2.1k</div>
-          <div class="stat">💬 31</div>
-          <div class="open-btn">Abrir →</div>
+      </div>
+
+      <div class="fab-container">
+        <div class="fab">
+          <div class="fab-ring"></div>
+          <span>✦</span>
         </div>
       </div>
+
+      <nav class="bottom-nav">
+        <div class="bnav-item active">
+          <div class="bnav-icon">🎮</div>
+          <div class="bnav-label">Juegos</div>
+          <div class="bnav-pip"></div>
+        </div>
+        <div class="bnav-item">
+          <div class="bnav-icon">🌐</div>
+          <div class="bnav-label">Comunidad</div>
+          <div class="bnav-pip"></div>
+        </div>
+        <div class="bnav-item">
+          <div class="bnav-icon">🔍</div>
+          <div class="bnav-label">Buscar</div>
+          <div class="bnav-pip"></div>
+        </div>
+        <div class="bnav-item">
+          <div class="bnav-icon">👤</div>
+          <div class="bnav-label">Perfil</div>
+          <div class="bnav-pip"></div>
+        </div>
+      </nav>
+
     </div>
-
-    <div style="display:flex;justify-content:flex-end;padding:0 20px;margin-top:16px">
-      <div class="fab">
-        <div class="fab-ring"></div>
-        <span>✦</span>
-      </div>
-    </div>
-
-    <nav class="bottom-nav">
-      <div class="bnav-item active">
-        <div class="bnav-icon">🎮</div>
-        <div class="bnav-label">Juegos</div>
-        <div class="bnav-pip"></div>
-      </div>
-      <div class="bnav-item">
-        <div class="bnav-icon">🌐</div>
-        <div class="bnav-label">Comunidad</div>
-        <div class="bnav-pip"></div>
-      </div>
-      <div class="bnav-item">
-        <div class="bnav-icon">🔍</div>
-        <div class="bnav-label">Buscar</div>
-        <div class="bnav-pip"></div>
-      </div>
-      <div class="bnav-item">
-        <div class="bnav-icon">👤</div>
-        <div class="bnav-label">Perfil</div>
-        <div class="bnav-pip"></div>
-      </div>
-    </nav>
-
   </div>
 </div>
 
@@ -434,71 +368,52 @@ function resize() {
 }
 resize();
 
-const COLORS = ['rgba(167,139,250,', 'rgba(34,211,238,', 'rgba(244,114,182,'];
-const particles = Array.from({length: 55}, () => ({
-  x: Math.random() * canvas.width,
-  y: Math.random() * canvas.height,
-  r: Math.random() * 1.5 + 0.3,
-  vx: (Math.random() - 0.5) * 0.25,
-  vy: (Math.random() - 0.5) * 0.25,
-  color: COLORS[Math.floor(Math.random() * COLORS.length)],
-  alpha: Math.random() * 0.4 + 0.1,
-  pulse: Math.random() * Math.PI * 2
+const COLORS = ['rgba(167,139,250,','rgba(34,211,238,','rgba(244,114,182,'];
+const particles = Array.from({length:55},()=>({
+  x:Math.random()*canvas.width, y:Math.random()*canvas.height,
+  vx:(Math.random()-.5)*.25, vy:(Math.random()-.5)*.25,
+  r:Math.random()*1.5+.3,
+  color:COLORS[Math.floor(Math.random()*3)],
+  alpha:Math.random()*.4+.1,
+  pulse:Math.random()*Math.PI*2
 }));
 
-let frame = 0;
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  frame++;
-
-  particles.forEach((p, i) => {
-    p.x += p.vx;
-    p.y += p.vy;
-    p.pulse += 0.015;
-    if (p.x < 0) p.x = canvas.width;
-    if (p.x > canvas.width) p.x = 0;
-    if (p.y < 0) p.y = canvas.height;
-    if (p.y > canvas.height) p.y = 0;
-
-    const a = p.alpha * (0.7 + 0.3 * Math.sin(p.pulse));
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fillStyle = p.color + a + ')';
-    ctx.fill();
-
-    // Draw subtle connections
-    for (let j = i + 1; j < particles.length; j++) {
-      const p2 = particles[j];
-      const dx = p.x - p2.x, dy = p.y - p2.y;
-      const dist = Math.sqrt(dx*dx + dy*dy);
-      if (dist < 80) {
-        ctx.beginPath();
-        ctx.moveTo(p.x, p.y);
-        ctx.lineTo(p2.x, p2.y);
-        ctx.strokeStyle = p.color + (0.06 * (1 - dist/80)) + ')';
-        ctx.lineWidth = 0.5;
-        ctx.stroke();
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach((p,i)=>{
+    p.x+=p.vx; p.y+=p.vy; p.pulse+=.015;
+    if(p.x<0)p.x=canvas.width; if(p.x>canvas.width)p.x=0;
+    if(p.y<0)p.y=canvas.height; if(p.y>canvas.height)p.y=0;
+    const a=p.alpha*(.7+.3*Math.sin(p.pulse));
+    ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=p.color+a+')'; ctx.fill();
+    for(let j=i+1;j<particles.length;j++){
+      const p2=particles[j];
+      const dx=p.x-p2.x,dy=p.y-p2.y,dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<80){
+        ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(p2.x,p2.y);
+        ctx.strokeStyle=p.color+(0.06*(1-dist/80))+')';
+        ctx.lineWidth=.5; ctx.stroke();
       }
     }
   });
-
   requestAnimationFrame(draw);
 }
 draw();
 
-// Game card interaction
-document.querySelectorAll('.game-card').forEach(card => {
-  card.addEventListener('click', () => {
-    document.querySelectorAll('.game-card').forEach(c => c.classList.remove('active'));
+document.querySelectorAll('.game-card').forEach(card=>{
+  card.addEventListener('click',()=>{
+    document.querySelectorAll('.game-card').forEach(c=>c.classList.remove('active'));
     card.classList.add('active');
   });
 });
 
-// Nav interaction
-document.querySelectorAll('.bnav-item').forEach(item => {
-  item.addEventListener('click', () => {
-    document.querySelectorAll('.bnav-item').forEach(i => i.classList.remove('active'));
+document.querySelectorAll('.bnav-item').forEach(item=>{
+  item.addEventListener('click',()=>{
+    document.querySelectorAll('.bnav-item').forEach(i=>i.classList.remove('active'));
     item.classList.add('active');
   });
 });
 </script>
+</body>
+</html>
